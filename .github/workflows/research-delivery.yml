@@ -1,0 +1,13 @@
+name: Research delivery
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+jobs:
+  delivery-gate:
+    # Use the same public entry point as paper repositories.
+    uses: IceLab-X/research-delivery/.github/workflows/research-delivery-reusable.yml@main
