@@ -1,0 +1,15 @@
+name: Research delivery gate
+description: Check mechanical research-delivery rules without judging science.
+
+runs:
+  using: composite
+  steps:
+    - name: Test the central checker
+      shell: bash
+      run: python -m unittest discover -s "$GITHUB_ACTION_PATH/../../../tools" -p 'test_*.py'
+    - name: Check the caller pull request
+      shell: bash
+      run: >-
+        python "$GITHUB_ACTION_PATH/../../../tools/check_research_delivery.py"
+        --event "$GITHUB_EVENT_PATH"
+        --repo-root "$GITHUB_WORKSPACE"

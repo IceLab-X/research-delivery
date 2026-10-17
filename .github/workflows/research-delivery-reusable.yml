@@ -1,0 +1,18 @@
+name: Reusable research delivery
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  delivery-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Run central research-delivery policy
+        uses: IceLab-X/research-delivery/.github/actions/research-delivery@main
